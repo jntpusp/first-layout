@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
+import Highlighter from "react-highlight-words";
 
 class App extends Component {
   state = {
@@ -25,7 +26,7 @@ class App extends Component {
   }
 
   render() {
-    let {searchInput} = this.state   
+    let {searchInput} = this.state
     let filtereduserList = this.state.users.filter(user => {
       return (
         user.id.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
@@ -39,6 +40,7 @@ class App extends Component {
         .includes(searchInput.toLowerCase())
       );
     });
+
 console.log(filtereduserList)
     const userList = filtereduserList.map(user => {
       return (
@@ -47,19 +49,44 @@ console.log(filtereduserList)
             {user.id}
           </td>
           <td  className="border px-4 py-2">
-            {user.name}
+              <Highlighter
+                  highlightClassName="YourHighlightClass"
+                  searchWords={[this.state.searchInput]}
+                  autoEscape={true}
+                  textToHighlight= {user.name}
+              />
           </td>
           <td  className="border px-4 py-2">
-            {user.email}
+              <Highlighter
+                  highlightClassName="YourHighlightClass"
+                  searchWords={[this.state.searchInput]}
+                  autoEscape={false}
+                  textToHighlight= {user.email}
+              />
           </td>
           <td  className="border px-4 py-2">
-            {user.address.city}
+              <Highlighter
+                  highlightClassName="YourHighlightClass"
+                  searchWords={[this.state.searchInput]}
+                  autoEscape={true}
+                  textToHighlight= {user.city}
+              />
           </td>
           <td  className="border px-4 py-2">
-            {user.company.name}
+              <Highlighter
+                  highlightClassName="YourHighlightClass"
+                  searchWords={[this.state.searchInput]}
+                  autoEscape={true}
+                  textToHighlight= {user.name}
+              />
           </td>
           <td  className="border px-4 py-2">
-            {user.phone}
+              <Highlighter
+                  highlightClassName="YourHighlightClass"
+                  searchWords={[this.state.searchInput]}
+                  autoEscape={true}
+                  textToHighlight= {user.phone}
+              />
           </td>
         </tr>
       );
@@ -69,16 +96,15 @@ console.log(filtereduserList)
       <div className="container mx-auto">
         <div className="">
         <form onSubmit={this.handleSubmit} className=" bg-gray-200 shadow px-8 py-2 m-8">
-          Global Search
-          <input
-            id="search"
-            // type="text"
-            // as="search"
-            value={this.state.search}
-            onChange={this.updateSearch.bind(this)}
-            placeholder=" Search..."
-            className = "ml-8 rounded"
-          />
+            <div className="input-group col-lg-12">
+                <label className="col-lg-4 text-right mt-2">Global Search</label>
+                <input  type="text" className="form-control searchInput col-lg-4" placeholder="Search ..." value={this.state.search}  onChange={this.updateSearch.bind(this)}/>
+                    <div className="input-group-append">
+                        <button className="btn btn-secondary" type="button">
+                            <i className="fa fa-search"></i>
+                        </button>
+                    </div>
+            </div>
         </form>
         </div>
        
@@ -103,5 +129,3 @@ console.log(filtereduserList)
 }
 
 export default App;
-
-
