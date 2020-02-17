@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+4. Actions Column - last column to the right contains a collection of clickable icons
+5. first column to the left contains a check box
+6. Then the first column header and first column footer to the left contain a check box
+And when either header or footer are clicked, all displayed rows are also checked
+7. Search textbox And presses enter or clicks search icon
+And each matching cell data is highlighted with the search text
+
+
 ## Available Scripts
 
 In the project directory, you can run:
